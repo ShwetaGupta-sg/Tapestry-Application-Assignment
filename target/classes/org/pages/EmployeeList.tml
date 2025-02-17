@@ -1,0 +1,21 @@
+
+<html xmlns:t="http://tapestry.apache.org/schema/tapestry_5_4.xsd" xmlns:p="tapestry:parameter">
+<t:header />
+<head>
+    <title>Employee List</title>
+</head>
+<body class="container">
+<h2>Employee Details</h2>
+<t:pagelink page="AddNewEmployee">
+    <button type="button">Add New Employee</button>
+</t:pagelink>
+<!-- Tapestry Grid component for displaying employee details -->
+<t:grid source="employees" row="employee"  rowsPerPage="4" pagerPosition="bottom">
+
+    <!-- Grid to display employees with clickable IDs -->
+    <p:idCell>
+        <t:pagelink page="IndividualEmployee" context="employee.id">View Details</t:pagelink>
+    </p:idCell>
+</t:grid>
+</body>
+</html>
