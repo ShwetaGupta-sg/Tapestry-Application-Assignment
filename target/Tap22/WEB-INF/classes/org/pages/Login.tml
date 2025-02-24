@@ -6,6 +6,10 @@
 <t:header />
 <h2>Login Page</h2>
 <form t:type="form" t:id="loginForm">
+    <t:if test="loginMessage">
+        <div class="error">${loginMessage}</div>
+    </t:if>
+
     <div>
         <label for="username">Username:</label>
         <input t:type="textfield" t:id="username" t:value="username" />
@@ -14,10 +18,11 @@
         <label for="password">Password:</label>
         <input t:type="passwordfield" t:id="password" t:value="password" />
     </div>
+<!--    <p t:if="loginMessage" class="error">${loginMessage}</p>-->
     <div>
         <input t:type="submit" value="Login" />
     </div>
-    <p t:if="loginMessage" class="error">${loginMessage}</p>
+
 </form>
 </body>
 </html>

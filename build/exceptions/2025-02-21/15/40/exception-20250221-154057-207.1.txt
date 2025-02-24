@@ -1,0 +1,152 @@
+EXCEPTION STACK:
+
+
+           Exception: org.apache.tapestry5.runtime.ComponentEventException
+             Message: Exception constructing service 'ValueEncoderSource': Error invoking service contribution method org.apache.tapestry5.hibernate.web.modules.HibernateModule.contributeValueEncoderSource(MappedConfiguration, boolean, HibernateSessionSource, Session, TypeCoercer, PropertyAccess, LoggerSource): Exception constructing service 'HibernateSessionSource': Error invoking constructor public org.apache.tapestry5.hibernate.internal.HibernateSessionSourceImpl(org.slf4j.Logger,java.util.List): Unable to open JDBC Connection for DDL execution
+             context: org.apache.tapestry5.internal.EmptyEventContext@279cf2ca
+           eventType: action
+            location: classpath:org/pages/Login.tml, line 8
+
+           Exception: org.apache.tapestry5.runtime.ComponentEventException
+             Message: Exception constructing service 'ValueEncoderSource': Error invoking service contribution method org.apache.tapestry5.hibernate.web.modules.HibernateModule.contributeValueEncoderSource(MappedConfiguration, boolean, HibernateSessionSource, Session, TypeCoercer, PropertyAccess, LoggerSource): Exception constructing service 'HibernateSessionSource': Error invoking constructor public org.apache.tapestry5.hibernate.internal.HibernateSessionSourceImpl(org.slf4j.Logger,java.util.List): Unable to open JDBC Connection for DDL execution
+             context: org.apache.tapestry5.internal.EmptyEventContext@279cf2ca
+           eventType: success
+            location: classpath:org/pages/Login.tml, line 8
+
+           Exception: java.lang.RuntimeException
+             Message: Exception constructing service 'ValueEncoderSource': Error invoking service contribution method org.apache.tapestry5.hibernate.web.modules.HibernateModule.contributeValueEncoderSource(MappedConfiguration, boolean, HibernateSessionSource, Session, TypeCoercer, PropertyAccess, LoggerSource): Exception constructing service 'HibernateSessionSource': Error invoking constructor public org.apache.tapestry5.hibernate.internal.HibernateSessionSourceImpl(org.slf4j.Logger,java.util.List): Unable to open JDBC Connection for DDL execution
+
+           Exception: org.apache.tapestry5.ioc.internal.OperationException
+             Message: Error invoking constructor public org.apache.tapestry5.hibernate.internal.HibernateSessionSourceImpl(org.slf4j.Logger,java.util.List): Unable to open JDBC Connection for DDL execution
+               trace: Handling traditional 'action' component event request for Login:loginform.
+                      Triggering event 'action' on Login:loginform
+                      Triggering event 'success' on Login:loginform
+                      Handling result from method org.pages.Login.onSuccessFromLoginForm().
+                      Constructing instance of page class org.pages.EmployeeList
+                      Realizing service ValueEncoderSource
+                      Instantiating service ValueEncoderSource implementation via org.apache.tapestry5.internal.services.ValueEncoderSourceImpl(Map) (at ValueEncoderSourceImpl.java:37) via org.apache.tapestry5.modules.TapestryModule.bind(ServiceBinder) (at TapestryModule.java:479)
+                      Creating plan to instantiate org.apache.tapestry5.internal.services.ValueEncoderSourceImpl via public org.apache.tapestry5.internal.services.ValueEncoderSourceImpl(java.util.Map)
+                      Determining injection value for parameter #1 (java.util.Map)
+                      Collecting mapped configuration for service ValueEncoderSource
+                      Invoking org.apache.tapestry5.hibernate.web.modules.HibernateModule.contributeValueEncoderSource(MappedConfiguration, boolean, HibernateSessionSource, Session, TypeCoercer, PropertyAccess, LoggerSource) (at HibernateModule.java:98)
+                      Realizing service HibernateSessionSource
+                      Instantiating service HibernateSessionSource implementation via org.apache.tapestry5.hibernate.internal.HibernateSessionSourceImpl(Logger, List) (at HibernateSessionSourceImpl.java:40) via org.apache.tapestry5.hibernate.modules.HibernateCoreModule.bind(ServiceBinder) (at HibernateCoreModule.java:43)
+                      Invoking constructor org.apache.tapestry5.hibernate.internal.HibernateSessionSourceImpl(Logger, List) (at HibernateSessionSourceImpl.java:40) via org.apache.tapestry5.hibernate.modules.HibernateCoreModule.bind(ServiceBinder) (at HibernateCoreModule.java:43) (for service 'HibernateSessionSource')
+
+           Exception: java.lang.RuntimeException
+             Message: Error invoking constructor public org.apache.tapestry5.hibernate.internal.HibernateSessionSourceImpl(org.slf4j.Logger,java.util.List): Unable to open JDBC Connection for DDL execution
+
+           Exception: org.hibernate.exception.GenericJDBCException
+             Message: Unable to open JDBC Connection for DDL execution
+                 SQL: n/a
+           errorCode: 0
+
+           Exception: java.sql.SQLException
+             Message: Connections could not be acquired from the underlying database!
+           errorCode: 0
+
+           Exception: com.mchange.v2.resourcepool.CannotAcquireResourceException
+             Message: A ResourcePool could not acquire a resource from its primary factory or source.
+     nestedThrowable: org.postgresql.util.PSQLException: FATAL: database "employee" does not exist
+
+           Exception: org.postgresql.util.PSQLException
+             Message: FATAL: database "employee" does not exist
+            SQLState: 3D000
+           errorCode: 0
+  serverErrorMessage: FATAL: database "employee" does not exist
+
+  Stack trace:
+
+  - org.postgresql.core.v3.QueryExecutorImpl.receiveErrorResponse(QueryExecutorImpl.java:2676)
+  - org.postgresql.core.v3.QueryExecutorImpl.readStartupMessages(QueryExecutorImpl.java:2788)
+  - org.postgresql.core.v3.QueryExecutorImpl.<init>(QueryExecutorImpl.java:174)
+  - org.postgresql.core.v3.ConnectionFactoryImpl.openConnectionImpl(ConnectionFactoryImpl.java:313)
+  - org.postgresql.core.ConnectionFactory.openConnection(ConnectionFactory.java:54)
+  - org.postgresql.jdbc.PgConnection.<init>(PgConnection.java:253)
+  - org.postgresql.Driver.makeConnection(Driver.java:434)
+  - org.postgresql.Driver.connect(Driver.java:291)
+  - com.mchange.v2.c3p0.DriverManagerDataSource.getConnection(DriverManagerDataSource.java:175)
+  - com.mchange.v2.c3p0.WrapperConnectionPoolDataSource.getPooledConnection(WrapperConnectionPoolDataSource.java:220)
+  - com.mchange.v2.c3p0.WrapperConnectionPoolDataSource.getPooledConnection(WrapperConnectionPoolDataSource.java:206)
+  - com.mchange.v2.c3p0.impl.C3P0PooledConnectionPool$1PooledConnectionResourcePoolManager.acquireResource(C3P0PooledConnectionPool.java:203)
+  - com.mchange.v2.resourcepool.BasicResourcePool.doAcquire(BasicResourcePool.java:1176)
+  - com.mchange.v2.resourcepool.BasicResourcePool.doAcquireAndDecrementPendingAcquiresWithinLockOnSuccess(BasicResourcePool.java:1163)
+  - com.mchange.v2.resourcepool.BasicResourcePool.access$700(BasicResourcePool.java:44)
+  - com.mchange.v2.resourcepool.BasicResourcePool$ScatteredAcquireTask.run(BasicResourcePool.java:1908)
+  - com.mchange.v2.async.ThreadPoolAsynchronousRunner$PoolThread.run(ThreadPoolAsynchronousRunner.java:696)
+
+REQUEST:
+
+Basic Information:
+
+                contextPath: /org
+                     method: POST
+                       path: /login.loginform
+                     locale: en_US
+                 serverName: localhost
+                 remoteHost: [0:0:0:0:0:0:0:1]
+
+Headers:
+
+                     Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7
+            Accept-Encoding: gzip, deflate, br, zstd
+            Accept-Language: en-US,en;q=0.9,en-GB;q=0.8,en-IN;q=0.7
+              Cache-Control: max-age=0
+                 Connection: keep-alive
+             Content-Length: 550
+               Content-Type: application/x-www-form-urlencoded
+                     Cookie: JSESSIONID=node013ozi0ldkmk7v1f8pw4l291lue0.node0
+                       Host: localhost:8080
+                     Origin: http://localhost:8080
+                    Referer: http://localhost:8080/org/Login
+             Sec-Fetch-Dest: document
+             Sec-Fetch-Mode: navigate
+             Sec-Fetch-Site: same-origin
+  Upgrade-Insecure-Requests: 1
+                 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/133.0.0.0 Safari/537.36 Edg/133.0.0.0
+                  sec-ch-ua: "Not(A:Brand";v="99", "Microsoft Edge";v="133", "Chromium";v="133"
+           sec-ch-ua-mobile: ?0
+         sec-ch-ua-platform: "Windows"
+
+Parameters:
+                   password: password123
+                   submit_0: Login
+                 t:formdata: 9s0wpQrqYMR6TfWGdMzqk2tKOrU=:H4sIAAAAAAAA/5WQsUoEMRRFnwMLCyuKgoW9tlkLt9HGRRCEQYRha8lknmMkk8S8jLM2Vv6EjV8gVvoFW9j5D36AjYWVhcksi4KLYPc4XN493Ps36DQrsJSaUuqdmtBpXiGQg4FxJeOWizNknlsk764GTBiHSuYs54RsmAfIhT+QqIqNDH1tN0eT3uva82cCCyn0hNHeGXUUXnpYTc/5Je8rrst+5p3U5e7YeujOSudrDP+rceyMQKKszitJJI2ePBTbpx93LwnA2H6XWE7UGFcAXcA1QBCZkTmZGOk0y7A45RSf+6i396eeMJU1GrUn1vr433a32fv60+PNfgJJCl2hZEgfFrEvDogKqwDigC1qB5u2n2z9OL8APmass8cBAAA=
+                   t:submit: ["submit_0","submit_0"]
+                   username: admin
+
+SYSTEM INFORMATION:
+
+Memory:
+      127,606,320 bytes free
+      266,338,304 bytes total
+    4,200,595,456 bytes max
+
+27 Threads:
+                                                                                 Reference Handler RUNNABLE, daemon, priority 10
+                                                                                         Finalizer WAITING, daemon, priority 8
+                                                                                 Signal Dispatcher RUNNABLE, daemon, priority 9
+                                                                                   Attach Listener RUNNABLE, daemon
+                                                                               Notification Thread RUNNABLE, daemon, priority 9
+                                                                                              main WAITING
+                                                                                Monitor Ctrl-Break RUNNABLE, daemon
+                                                                                          Thread-1 WAITING, daemon
+*                                                                                 qtp2030748640-21 RUNNABLE
+                                                                                  qtp2030748640-22 BLOCKED
+                                                                                  qtp2030748640-23 RUNNABLE
+                                                                                  qtp2030748640-25 RUNNABLE
+                                                                                  qtp2030748640-26 BLOCKED
+                                                                                  qtp2030748640-27 RUNNABLE
+  qtp2030748640-28-acceptor-0@fcf806c-ServerConnector@6723626f{HTTP/1.1, (http/1.1)}{0.0.0.0:8080} RUNNABLE, priority 3
+                                                                                  qtp2030748640-29 RUNNABLE
+                                                                                  qtp2030748640-30 RUNNABLE
+                                                                                  qtp2030748640-31 RUNNABLE
+                                                                                  qtp2030748640-32 BLOCKED
+                                                                                  qtp2030748640-33 BLOCKED
+                                                                     Session-HouseKeeper-6921cfa-1 TIMED_WAITING
+                                                                         Tapestry PeriodicExecutor TIMED_WAITING
+   C3P0PooledConnectionPoolManager[identityToken->1hge163b9b3eeqb1xi51ja|1bbc1536]-HelperThread-#1 RUNNABLE, daemon, interrupted
+                                                                                  qtp2030748640-47 RUNNABLE
+                                                                                  qtp2030748640-48 TIMED_WAITING
+                                                                                  qtp2030748640-49 TIMED_WAITING
+                                                                                    Common-Cleaner TIMED_WAITING, daemon, priority 8

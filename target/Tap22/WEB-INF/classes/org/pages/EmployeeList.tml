@@ -6,11 +6,19 @@
 </head>
 <body class="container">
 <h2>Employee Details</h2>
-<t:pagelink page="AddNewEmployee">
-    <button type="button">Add New Employee</button>
-</t:pagelink>
+<!--<t:pagelink page="AddNewEmployee">-->
+<!--    <button type="button">Add New Employee</button>-->
+<!--</t:pagelink>-->
+<t:if test="isAdmin">
+    <t:form t:id="addEmployeeForm">
+        <t:submit value="Add Employee"/>
+    </t:form>
+</t:if>
+
+<p>Is Admin: ${isAdmin}</p> <!-- Debug: Show admin status on UI -->
+
 <!-- Tapestry Grid component for displaying employee details -->
-<t:grid source="employees" row="employee"  rowsPerPage="4" pagerPosition="bottom">
+<t:grid source="employee" row="employee"  rowsPerPage="4" pagerPosition="bottom">
 
     <!-- Grid to display employees with clickable IDs -->
     <p:idCell>

@@ -10,28 +10,34 @@
         }
     </style>
 </head>
-<t:form t:id="addEmployeeForm">
-    <p>
-        <label>Name:</label>
-        <t:textfield t:value="name"  t:validate="required"/>
-    </p>
-    <p>
-        <label>Age:</label>
-        <t:textfield t:value="age" min="18" max="65" t:validate="required"/>
-    </p>
-    <p>
-        <label>Address:</label>
-        <t:textfield t:value="address" t:validate="required"/>
-    </p>
+<t:if test="isAdmin">
+    <p>Is Admin: ${isAdmin}</p>
+    <t:form t:id="addEmployeeForm">
+        <p>
+            <label>Name:</label>
+            <t:textfield t:value="name"  t:validate="required"/>
+        </p>
+        <p>
+            <label>Age:</label>
+            <t:textfield t:value="age" min="18" max="65" t:validate="required"/>
+        </p>
+        <p>
+            <label>Address:</label>
+            <t:textfield t:value="address" t:validate="required"/>
+        </p>
+        <t:select t:id="role" model="roleOptions" value="selectedRole"/>
+        <t:if test="errorMessage">
+            <div class="error">${errorMessage}</div>
+        </t:if>
 
-    <t:if test="errorMessage">
-        <div class="error">${errorMessage}</div>
-    </t:if>
-
-    <p>
-        <button type="submit">Add Employee</button>
-    </p>
+        <p>
+            <button type="submit">Add Employee</button>
+        </p>
 </t:form>
-
+</t:if>
+<t:else>
+    <p>You do not have permission to add employees.</p>
+</t:else>
 <t:pagelink page="EmployeeList">Back to Employee List</t:pagelink>
+
 </html>

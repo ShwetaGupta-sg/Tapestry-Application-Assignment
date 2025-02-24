@@ -1,5 +1,6 @@
 package org.data.repositories;
 import org.data.entities.Employee;
+import org.data.entities.User;
 
 import java.util.List;
 
@@ -11,6 +12,6 @@ public interface EmployeeRepository {
     Employee getEmployeeById(int id);
 
 
-    boolean checkCredentials(String username, String password);
+    User checkCredentials(String username, String password);
 
 }

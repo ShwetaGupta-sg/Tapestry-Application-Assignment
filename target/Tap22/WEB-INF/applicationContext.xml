@@ -12,7 +12,7 @@
 		http://www.springframework.org/schema/tx/spring-tx-3.1.xsd">
 
 <!--    &lt;!&ndash; Define Employee Service &ndash;&gt;-->
-<!--    <bean id="employeeService" class="org.data.services.EmployeeServiceImpl"/>-->
+    <bean id="employeeService" class="org.data.services.EmployeeServiceImpl"/>
 
 <!--    &lt;!&ndash; Define Employee Repository &ndash;&gt;-->
     <bean id="employeeRepository" class="org.data.repositories.EmployeeRepositoryImpl"/>

@@ -18,6 +18,8 @@ import org.apache.tapestry5.ioc.services.RegistryShutdownListener;
 import org.apache.tapestry5.ioc.services.SymbolProvider;
 import org.data.repositories.EmployeeRepository;
 import org.data.repositories.EmployeeRepositoryImpl;
+import org.data.repositories.UserRepository;
+import org.data.repositories.UserRepositoryImpl;
 import org.hibernate.SessionFactory;
 import org.hibernate.boot.Metadata;
 import org.hibernate.boot.MetadataSources;
@@ -35,6 +37,7 @@ public class OrgModule {
         binder.bind(EmployeeRepository.class, EmployeeRepositoryImpl.class).eagerLoad();
         binder.bind(LoginService.class, LoginServiceImpl.class);
         binder.bind(EmployeeService.class, EmployeeServiceImpl.class).eagerLoad();
+        binder.bind(UserRepository.class, UserRepositoryImpl.class).eagerLoad();
 
 
         // Make bind() calls on the binder object to define most IoC services.
