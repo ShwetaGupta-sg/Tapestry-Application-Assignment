@@ -1,0 +1,44 @@
+<html xmlns:t="http://tapestry.apache.org/schema/tapestry_5_4.xsd" xmlns:p="tapestry:parameter">
+<t:header />
+<head>
+    <title>Employee List</title>
+</head>
+<body class="container">
+
+<style>
+    .top-right { position: absolute; top: 10px; right: 10px; }
+</style>
+
+<h2>Employee Details</h2>
+<!-- Add Employee Button (Only Visible to Admin Users) -->
+<t:if test="isAdmin">
+    <t:actionlink t:id="addEmployee">[ADD EMPLOYEE]</t:actionlink>
+</t:if>
+
+<!-- Employee Table using <t:grid> -->
+<div class="eg">
+    <t:grid source="employees" row="employee" add="action" rowsPerPage="5" pagerPosition="top">
+        <p:actionCell>
+            <!-- View Button (Available for all users) -->
+            <t:pagelink page="IndividualEmployee" context="employee.id">View</t:pagelink>
+
+            <!-- Edit Button (Only for Admin or Users with EDIT_EMPLOYEES permission) -->
+            <t:if test="canEdit">
+                <t:pagelink page="AddNewEmployee" context="employee.id">Edit</t:pagelink>
+            </t:if>
+
+            <!-- Delete Button (Only for Admin or Users with DELETE_EMPLOYEES permission) -->
+            <t:if test="canDelete">
+                <t:actionlink context="employee.id" t:id="deleteEmployee">Delete</t:actionlink>
+            </t:if>
+        </p:actionCell>
+    </t:grid>
+</div>
+
+<!-- Logout Link -->
+<div class="top-right">
+    <t:pagelink page="Login">[LOGOUT]</t:pagelink>
+</div>
+
+</body>
+</html>

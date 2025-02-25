@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+   http://www.springframework.org/schema/beans/spring-beans.xsd
+   http://www.springframework.org/schema/tx
+    http://www.springframework.org/schema/tx/spring-tx-2.5.xsd
+   http://www.springframework.org/schema/context
+   http://www.springframework.org/schema/context/spring-context.xsd">
+    <context:component-scan base-package="org.data"/>
+
+
+    <!-- Transaction Manager -->
+    <bean id="transactionManager" class="org.springframework.orm.hibernate5.HibernateTransactionManager">
+        <property name="sessionFactory" ref="sessionFactory" />
+    </bean>
+
+    <tx:annotation-driven proxy-target-class="true"
+                          transaction-manager="transactionManager"/>
+
+    <!-- Hibernate SessionFactory -->
+    <bean id="sessionFactory"
+          class="org.springframework.orm.hibernate5.LocalSessionFactoryBean">
+        <property name="dataSource" ref="dataSource"/>
+        <!--        <property name="packagesToScan" value="org"/>-->
+        <property name="configLocations">
+            <list>
+                <value>classpath:hibernate.cfg.xml</value>
+            </list>
+        </property>
+    </bean>
+    <!-- Database DataSource -->
+    <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+        <property name="driverClassName"
+                  value="${jdbc.driverClassName}" />
+        <property name="url"
+                  value="${jdbc.url}"/>
+        <property name="username"
+                  value="${jdbc.username}" />
+        <property name="password"
+                  value="${jdbc.password}"/>
+    </bean>
+    <bean id="propertyConfigurer" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+        <!--  Hard code the defaults here, but allow properties file to override -->
+        <property name="properties">
+            <props>
+                <prop key="jdbc.c3p0.maxPoolSize">10</prop>
+                <prop key="jdbc.c3p0.minPoolSize">2</prop>
+                <prop key="jdbc.c3p0.idleConnectionTestPeriod">600000</prop> <!-- 10min in millis -->
+                <prop key="jdbc.c3p0.initialPoolSize">1</prop>
+                <prop key="jdbc.c3p0.acquireIncrement">1</prop>
+                <prop key="jdbc.c3p0.acquireRetryAttempts">1</prop>
+                <prop key="jdbc.c3p0.automaticTestTable">c3p0_test</prop>
+            </props>
+        </property>
+        <property name="locations">
+            <list>
+                <value>classpath:jdbc.properties</value>
+            </list>
+        </property>
+        <property name="ignoreUnresolvablePlaceholders" value="true"/>
+    </bean>
+</beans>
