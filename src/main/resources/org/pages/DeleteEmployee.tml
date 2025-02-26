@@ -1,0 +1,30 @@
+<html xmlns:t="http://tapestry.apache.org/schema/tapestry_5_4.xsd">
+<t:header/>
+<head>
+    <title> Delete Employee</title>
+    <style>
+        .error {
+            color: red;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<!--<t:if test="getCanDelete(employee)">-->
+<!--<t:if test="deleteEmployeeForm">-->
+<t:form t:id="deleteEmployeeForm">
+    <!--    <t:actionlink t:id="deleteEmployee" context="employee.id">Delete</t:actionlink>-->
+    <p style="color: green; font-weight: bold;">Employee deleted successfully.</p>
+    <!--</t:if>-->
+
+</t:form>
+<!--<t:form t:id="deleteEmployeeForm">-->
+<!--    <t:actionlink t:id="delete" context="employee.id">Delete</t:actionlink>-->
+<!--</t:form>-->
+
+<!--<t:if test="deleted">-->
+<!--    <p style="color: green; font-weight: bold;">Employee deleted successfully.</p>-->
+<!--</t:if>-->
+
+<t:pagelink page="EmployeeList">Back to Employee List</t:pagelink>
+
+</html>

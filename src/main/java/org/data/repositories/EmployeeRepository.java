@@ -8,7 +8,8 @@ public interface EmployeeRepository {
 
     List<Employee> getAllEmployees();
 
-    Employee getEmployeeById(int id);
+    Employee getEmployeeById(Long id);
 
+    void delete(Employee employee);
 
 }

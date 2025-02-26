@@ -1,0 +1,41 @@
+
+<html xmlns:t="http://tapestry.apache.org/schema/tapestry_5_4.xsd" xmlns:p="tapestry:parameter">
+<t:header />
+<head>
+    <title> Edit Employee</title>
+    <style>
+        .error {
+            color: red;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<t:form t:id="EditEmployeeForm">
+    <p>
+        <label>Name:</label>
+        <t:textfield t:value="name"  t:validate="required"/>
+    </p>
+    <p>
+        <label>Age:</label>
+        <t:textfield t:value="age" min="18" max="65" t:validate="required"/>
+    </p>
+    <p>
+        <label>Address:</label>
+        <t:textfield t:value="address" t:validate="required"/>
+    </p>
+    <label>Role:
+        <t:select t:id="selectedRole" model="roleOptions" value="selectedRole" encoder="roleEncoder"/>
+    </label><br/>
+
+
+    <t:if test="errorMessage">
+        <div class="error">${errorMessage}</div>
+    </t:if>
+
+    <p>
+        <t:submit value="Save Changes"/>
+    </p>
+</t:form>
+<t:pagelink page="EmployeeList">Back to Employee List</t:pagelink>
+
+</html>

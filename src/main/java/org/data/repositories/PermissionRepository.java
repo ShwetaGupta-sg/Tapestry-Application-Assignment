@@ -9,5 +9,7 @@ import java.util.List;
 public interface PermissionRepository {
     List<Permission> getAllPermissions();
     Permission getPermissionByName(String name);
+
+    boolean hasEditPermission(Long employeeId);
 }
 

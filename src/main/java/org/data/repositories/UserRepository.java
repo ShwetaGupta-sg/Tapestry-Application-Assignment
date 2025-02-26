@@ -5,6 +5,7 @@ import org.data.entities.User;
 
 public interface UserRepository{
 
-    User findByUsername(String username);
     void saveUser(User user);
+
+    User findByUsername(String username);
 }

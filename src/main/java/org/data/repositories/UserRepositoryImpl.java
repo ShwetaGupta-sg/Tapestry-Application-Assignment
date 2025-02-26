@@ -2,8 +2,10 @@ package org.data.repositories;
 
 import org.data.entities.Employee;
 import org.data.entities.User;
+import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
 import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -19,7 +21,6 @@ public class UserRepositoryImpl implements UserRepository {
     private Session getSession() {
         return sessionFactory.getCurrentSession();  // Ensures using the same session
     }
-
     @Override
     public User findByUsername(String username) {
         try (Session session = sessionFactory.openSession()) {  // Open session explicitly
@@ -28,9 +29,23 @@ public class UserRepositoryImpl implements UserRepository {
             return query.uniqueResult();
         }
     }
-
+    @Transactional
     @Override
     public void saveUser(User user) {
-        getSession().saveOrUpdate(user);
+//        getSession().saveOrUpdate(user);
+        Transaction transaction = null;
+
+        try (Session session = sessionFactory.getCurrentSession()) {
+            transaction = session.beginTransaction();  // Start a transaction
+
+            session.saveOrUpdate(user);
+
+            transaction.commit();  // Commit transaction
+        } catch (HibernateException ex) {
+            if (transaction != null) {
+                transaction.rollback();  // Rollback on error
+            }
+            ex.printStackTrace();
+        }
     }
 }

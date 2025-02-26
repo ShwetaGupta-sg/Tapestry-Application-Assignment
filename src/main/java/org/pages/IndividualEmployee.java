@@ -18,18 +18,18 @@ public class IndividualEmployee {
     @Property
     private Employee employee;
 
-    private int employeeId;
+    private Long employeeId;
 
-    public void setEmployeeId(int employeeId) {
+    public void setEmployeeId(Long employeeId) {
         this.employeeId = employeeId;
     }
 
-    void onActivate(int id) {
+    void onActivate(Long id) {
         this.employeeId = id;
         this.employee = employeeService.getEmployeeById(employeeId);
     }
 
-    int onPassivate() {
+    Long onPassivate() {
         return employeeId;
     }
 }
