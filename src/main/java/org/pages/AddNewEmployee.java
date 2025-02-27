@@ -53,8 +53,8 @@ public class AddNewEmployee {
     @InjectPage
     private Login loginPage;  // For logout redirection
 
-    Object onSuccessFromAddEmployeeForm() {
-        Long userId = 1L;  // Ensure this is the correct user ID
+    Object onSuccessFromAddNewEmployeeForm() {
+        Long userId = 1L;
         Role role = roleService.findByName(selectedRole);
         User user = userService.findById(userId); // Fetch the user from DB
 

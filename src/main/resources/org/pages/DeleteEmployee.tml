@@ -9,21 +9,12 @@
         }
     </style>
 </head>
-<!--<t:if test="getCanDelete(employee)">-->
-<!--<t:if test="deleteEmployeeForm">-->
+<t:if test="deleteEmployeeForm">
 <t:form t:id="deleteEmployeeForm">
-    <!--    <t:actionlink t:id="deleteEmployee" context="employee.id">Delete</t:actionlink>-->
-    <p style="color: green; font-weight: bold;">Employee deleted successfully.</p>
-    <!--</t:if>-->
-
+        <t:actionlink t:id="deleteEmployee" context="employee.id">Delete</t:actionlink>
 </t:form>
-<!--<t:form t:id="deleteEmployeeForm">-->
-<!--    <t:actionlink t:id="delete" context="employee.id">Delete</t:actionlink>-->
-<!--</t:form>-->
+</t:if>
 
-<!--<t:if test="deleted">-->
-<!--    <p style="color: green; font-weight: bold;">Employee deleted successfully.</p>-->
-<!--</t:if>-->
 
 <t:pagelink page="EmployeeList">Back to Employee List</t:pagelink>
 

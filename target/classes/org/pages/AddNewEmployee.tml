@@ -1,6 +1,6 @@
 
 <html xmlns:t="http://tapestry.apache.org/schema/tapestry_5_4.xsd" xmlns:p="tapestry:parameter">
-<t:header />
+
 <head>
     <title> Add New Employee</title>
     <style>
@@ -10,7 +10,9 @@
         }
     </style>
 </head>
-<t:form t:id="addEmployeeForm">
+<body class = "container">
+fmncdskhbcjhsdbcjhdsbcjhdbchbdcjhdsbddddddddddddd
+<t:form t:id="addNewEmployeeForm">
     <p>
         <label>Name:</label>
         <t:textfield t:value="name"  t:validate="required"/>
@@ -37,5 +39,5 @@
     </p>
 </t:form>
 <t:pagelink page="EmployeeList">Back to Employee List</t:pagelink>
-
+</body>
 </html>

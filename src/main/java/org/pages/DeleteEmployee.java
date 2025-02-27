@@ -32,12 +32,14 @@ public class DeleteEmployee {
         }
     }
 
+    public boolean isDeleteEmployee(){
+        return true;
+    }
     void onValidateFromDeleteEmployeeForm() {
         if (employeeId == null || employeeId <= 0) {
             deleteEmployeeForm.recordError("Invalid employee ID.");
         }
     }
-
     Object onSuccessFromDeleteEmployeeForm() {
         employeeService.deleteEmployee(employeeId);
         return pageRenderLinkSource.createPageRenderLink(EmployeeList.class); // Redirect after successful delete

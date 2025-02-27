@@ -1,7 +1,5 @@
 package org.pages;
 
-import net.bytebuddy.asm.Advice;
-import org.apache.tapestry5.annotations.OnEvent;
 import org.apache.tapestry5.annotations.Property;
 import org.apache.tapestry5.annotations.SetupRender;
 import org.apache.tapestry5.http.services.RequestGlobals;
@@ -33,11 +31,6 @@ public class EmployeeList {
     @Property
     private boolean isAdmin;
 
-    @OnEvent(component = "addNewEmployee")
-    Object onAddEmployee() {
-        return AddNewEmployee.class;
-    }
-
         @SetupRender
         public void setupRender() {
             User loggedInUser = (User) requestGlobals.getRequest().getSession(true).getAttribute("loggedInUser");
@@ -66,25 +59,24 @@ public class EmployeeList {
         }
 
 
-    public boolean canEdit(Employee employee) {
+//    public boolean isCanEdit(Employee employee) {
+    public boolean isCanEdit() {
         if (employee == null) {
             return false;
         }
-
-        // Admin can edit all employees
-        if ("ADMIN".equalsIgnoreCase(employee.getRole().getName())) {
+        if(employee.getPermissions().stream()
+                .anyMatch(permission -> "EDIT_EMPLOYEES".equalsIgnoreCase(permission.getName()))){
             return true;
         }
-
-        // Check if the employee has the 'EDIT_EMPLOYEES' permission
-        return employee.getPermissions().stream()
-                .anyMatch(permission -> "EDIT_EMPLOYEES".equalsIgnoreCase(permission.getName()));
+        return isAdmin;
     }
-    public boolean CanDelete(Employee employee) {   // Only admins can delete employees
-        if ("ADMIN".equalsIgnoreCase(employee.getRole().getName())) {
-            return true;
-        }
-        return employee.getPermissions().stream()
-                .anyMatch(permission -> "DELETE_EMPLOYEES".equalsIgnoreCase(permission.getName()));
+
+    public boolean isCanDelete() {   // Only admins can delete employees
+            return isAdmin;
+    }
+
+    public Object onActionFromDeleteEmployee(long employeeId){
+            employeeService.deleteEmployee(employeeId);
+            return this;
     }
 }

@@ -15,8 +15,6 @@ import java.util.List;
 
 @Service
 public class EmployeeServiceImpl implements EmployeeService {
-    @PersistenceContext
-    private EntityManager entityManager;
 
     private final EmployeeRepository employeeRepository;
 
@@ -48,15 +46,8 @@ public class EmployeeServiceImpl implements EmployeeService {
         }
     }
 
-//    @Override
-//    public void delete(Long id) {
-//        CriteriaBuilder cb = entityManager.getCriteriaBuilder();
-//        CriteriaDelete<Employee> delete = cb.createCriteriaDelete(Employee.class);
-//        Root<Employee> root = delete.from(Employee.class);
-//        delete.where(cb.equal(root.get("id"), id));
-//        entityManager.createQuery(delete).executeUpdate();
-//    }
 @Override
+@Transactional
 public void deleteEmployee(Long employeeId) {
     System.out.println("🔄 Attempting to delete employee with ID: " + employeeId);
     Employee employee = employeeRepository.getEmployeeById(employeeId);
