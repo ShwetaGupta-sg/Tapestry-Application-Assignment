@@ -1,5 +1,6 @@
 package org.pages;
 
+import org.apache.tapestry5.annotations.Import;
 import org.apache.tapestry5.annotations.InjectPage;
 import org.apache.tapestry5.annotations.Property;
 import org.apache.tapestry5.annotations.SetupRender;
@@ -12,15 +13,26 @@ import org.data.services.EmployeeService;
 import org.data.services.RoleService;
 import org.data.services.UserService;
 
+import java.time.LocalDate;
 import java.util.List;
-
-public class AddNewEmployee {
+//@Import(library = "ValidateAge.js")
+//@Import(library = {"classpath:/TapestryApplication/src/main/webapp/mybootstrap/js/ValidateAge.js"})
+public class AddEmployee {
 
     @Property
     private String name;
 
     @Property
     private int age;
+
+    @Property
+    private String designation;
+
+    @Property
+    private LocalDate dateOfBirth;
+
+    @Property
+    private String gender;
 
     @Property
     private String address;
@@ -72,6 +84,9 @@ public class AddNewEmployee {
         employee.setAge(age);
         employee.setAddress(address);
         employee.setRole(role);
+        employee.setDesignation(designation);
+        employee.setGender(gender);
+        employee.setDateOfBirth(dateOfBirth);
 
         userService.save(user);  // Ensure user is saved if modified
         employeeService.saveEmployee(employee); //

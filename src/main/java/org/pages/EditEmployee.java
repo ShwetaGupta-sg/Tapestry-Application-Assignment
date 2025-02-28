@@ -13,8 +13,9 @@ import org.data.entities.Role;
 import org.data.services.EmployeeService;
 import org.data.services.RoleService;
 
+import java.time.LocalDate;
 import java.util.List;
-
+//@Import(library = "ValidateAge.js")
 public class EditEmployee {
 
     @Inject
@@ -49,6 +50,15 @@ public class EditEmployee {
     @Property
     private int age;
 
+    @Property
+    private String designation;
+
+    @Property
+    private LocalDate dateOfBirth;
+
+    @Property
+    private String gender;
+
     @Inject
     PageRenderLinkSource pageRenderLinkSource;
 
@@ -70,6 +80,9 @@ public class EditEmployee {
                 age = employee.getAge();
                 address = employee.getAddress();
                 selectedRole = employee.getRole();
+                designation = employee.getDesignation();
+                gender = employee.getGender();
+                dateOfBirth = employee.getDateOfBirth();
             }else {
                 errorMessage = messages.get("not-found");
             }

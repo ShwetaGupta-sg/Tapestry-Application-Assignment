@@ -3,6 +3,7 @@ package org.data.entities;
 
 import jakarta.persistence.*;
 
+import java.time.LocalDate;
 import java.util.Set;
 
 @Entity
@@ -17,6 +18,12 @@ public class Employee {
     private String name;
 
     @Column
+    private String designation;
+
+    @Column
+    private String gender;
+
+    @Column
     private int age;
 
     @Column
@@ -24,6 +31,10 @@ public class Employee {
     @ManyToOne
     @JoinColumn(name = "role_id", nullable = false)
     private Role role;
+
+    @Column(name = "date_of_birth")
+    private LocalDate dateOfBirth;
+
 
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
@@ -72,5 +83,38 @@ public class Employee {
 
     public void setPermissions(Set<Permission> permissions) {
         this.permissions = permissions;
+    }
+
+    public String getDesignation() {
+        return designation;
+    }
+
+    public void setDesignation(String designation) {
+        this.designation = designation;
+    }
+
+    public String getGender() {
+        return gender;
+    }
+
+    public void setGender(String gender) {
+        this.gender = gender;
+    }
+
+    public LocalDate getDateOfBirth() {
+        return dateOfBirth;
+    }
+
+    public void setDateOfBirth(LocalDate dateOfBirth) {
+        this.dateOfBirth = dateOfBirth;
+    }
+
+    // Check if today is the employee's birthday
+    public boolean isBirthday() {
+        if (dateOfBirth == null) {
+            return false;
+        }
+        LocalDate today = LocalDate.now();
+        return today.getMonth() == dateOfBirth.getMonth() && today.getDayOfMonth() == dateOfBirth.getDayOfMonth();
     }
 }

@@ -13,11 +13,12 @@
 <!-- Add Employee Button (Only Visible to Admin Users) -->
 <t:if test="isAdmin">
 <!--    <t:actionlink t:id="AddNewEmployee">[ADD EMPLOYEE]</t:actionlink>-->
-    <t:pagelink page="AddNewEmployee"> [ADD EMPLOYEE] </t:pagelink>
+    <t:pagelink page="addEmployee"> [ADD EMPLOYEE] </t:pagelink>
 </t:if>
 
 <!-- Employee Table using <t:grid> -->
 <div class="eg">
+
     <t:grid source="employees" row="employee" add="action" rowsPerPage="25" pagerPosition="top">
         <p:actionCell>
             <!-- View Button (Available for all users) -->

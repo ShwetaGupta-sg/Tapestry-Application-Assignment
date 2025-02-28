@@ -2,6 +2,26 @@
 <html xmlns:t="http://tapestry.apache.org/schema/tapestry_5_4.xsd" xmlns:p="tapestry:parameter">
 <head>
     <title>Individual Employee Details</title>
+    <style>
+        /* Styling for the CLOSE button */
+        .close-button {
+            position: absolute;
+            top: 10px;
+            right: 20px;
+            background-color: red;
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            font-size: 14px;
+            font-weight: bold;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+        .close-button:hover {
+            background-color: darkred;
+        }
+    </style>
 </head>
 <body class="container">
 <t:header />
@@ -15,8 +35,39 @@
 <!--    <p><strong>Address:</strong> ${employee.address}</p>-->
 <!--</div>-->
 
+
+<!-- Close button at the top-right corner -->
+<t:pagelink page="Login">
+    <button class="close-button">[CLOSE]</button>
+</t:pagelink>
+
 <t:grid source="employee" row="employee" pagerPosition="bottom">
+    <!-- Wrap designation in a Zone component -->
 </t:grid>
+<t:zone t:id="birthdayZone">
+    <t:if test="employee">
+        <!--   <t:EmployeeBirthday employee="employee"/> -->
+    </t:if>
+
+<!--<t:zone t:id="birthdayZone">-->
+<!--    <t:if test="isEmployeeBirthday">-->
+<!--           <t:EmployeeBirthday employee="employee"/> -->
+<!--    </t:if>-->
+
+</t:zone>
+<t:zone t:id="promotionZone">
+    <p><strong>Designation:</strong> ${employee.designation}</p>
+</t:zone>
+<t:zone t:id="imageZone">
+    <img src="${context:images/employee.jpg}" width="100px" height="100px" />
+</t:zone>
+<br/>
+<t:actionlink t:id="showImage"> </t:actionlink>
+<t:eventlink t:id="promote" zone="promotionZone" >[PROMOTE]</t:eventlink>
+<!--<t:if test="isEmployeeBirthday()">-->
+<!--    <t:EmployeeBirthday id = "employeeBirthday"  employee="employee" />-->
+<!--    <t:EmployeeBirthday employee="employee" />-->
+<!--</t:if>-->
 
 <t:pagelink page="employeeList">Back to Employee List</t:pagelink>
 </body>
